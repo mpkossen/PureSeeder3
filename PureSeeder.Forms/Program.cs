@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PureSeeder.Core.Context;
@@ -23,9 +25,9 @@ namespace PureSeeder.Forms
                 return;
 
             // Setup Gecko browser
-            var xulLocation = @"xulrunner";
-            Gecko.Xpcom.Initialize(xulLocation);
-            Gecko.GeckoPreferences.Default["extensions.blocklist.enabled"] = false;
+            //var xulLocation = @"xulrunner";
+            //Gecko.Xpcom.Initialize("xulrunner");
+            //Gecko.GeckoPreferences.Default["extensions.blocklist.enabled"] = false;
 
             var context = Bootstrapper.GetDataContext();
             LoadSettingsAtStartup(context);

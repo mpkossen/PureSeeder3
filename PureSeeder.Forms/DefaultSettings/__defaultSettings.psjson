@@ -2,28 +2,28 @@
   "Servers": [
     {
       "Name": "PURE Battlefield #1",
-      "Address": "http://bf4-server1.purebattlefield.org",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/dd772e48-f52e-496e-8015-fb94b0bf9ccc/",
       "MinPlayers": 4,
       "MaxPlayers": 40,
       "SeedingEnabled": true
     },
     {
       "Name": "PURE Battlefield #3",
-      "Address": "http://bf4-server3.purebattlefield.org",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/dd772e48-f52e-496e-8015-fb94b0bf9ccc/",
       "MinPlayers": 4,
       "MaxPlayers": 40,
       "SeedingEnabled": true
     },
     {
       "Name": "PURE Battlefield #4",
-      "Address": "http://bf4-server4.purebattlefield.org",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/dd772e48-f52e-496e-8015-fb94b0bf9ccc/",
       "MinPlayers": 4,
       "MaxPlayers": 32,
       "SeedingEnabled": true
     },
     {
       "Name": "PURE Battlefield #2",
-      "Address": "http://bf4-server2.purebattlefield.org",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/dd772e48-f52e-496e-8015-fb94b0bf9ccc/",
       "MinPlayers": 4,
       "MaxPlayers": 40,
       "SeedingEnabled": true

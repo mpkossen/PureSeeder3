@@ -21,6 +21,7 @@ using PureSeeder.Core.Settings;
 using PureSeeder.Forms.Extensions;
 using PureSeeder.Forms.Properties;
 using Timer = System.Windows.Forms.Timer;
+using CefSharp;
 
 namespace PureSeeder.Forms
 {
@@ -83,9 +84,6 @@ namespace PureSeeder.Forms
             UiSetup();
             
             await RefreshServerStatusesNoSeed();
-            
-
-            geckoWebBrowser1.DocumentCompleted += BrowserChanged;
 
             FirstRunCheck();
 
@@ -349,8 +347,8 @@ namespace PureSeeder.Forms
 
         private async Task AttempSeeding(SeederAction seederAction)
         {
-            if (!await CanSeed())
-                return;
+            //if (!await CanSeed())
+            //    return;
 
             _browserRefreshTimer.Stop();
 
@@ -379,8 +377,18 @@ namespace PureSeeder.Forms
         /// </summary>
         private void BrowserChanged(object sender, EventArgs e)
         {
-            curUrl.Text = geckoWebBrowser1.Url.ToString();
-            UpdateContextWithBrowserData();
+            string html;
+            
+            browser.GetSourceAsync().ContinueWith(taskHtml =>
+            {
+                html = taskHtml.Result;
+                UpdateContextWithBrowserData(html);
+            });
+
+            if (curUrl.InvokeRequired)
+            {
+                curUrl.Invoke(new MethodInvoker(delegate { curUrl.Text = browser.Address; }));
+            }
         }
 
         #endregion EventHandlers
@@ -412,12 +420,12 @@ namespace PureSeeder.Forms
 
         private void RefreshPage()
         {
-            geckoWebBrowser1.Refresh();
+            browser.Refresh();
         }
 
         private Task Navigate(string url)
         {
-            return Task.Factory.StartNew(() => BeginInvoke(new Action(() => geckoWebBrowser1.Navigate(url))));
+            return Task.Factory.StartNew(() => BeginInvoke(new Action(() => browser.LoadUrlAsync(url))));
         }
 
         private void ContextPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -428,17 +436,9 @@ namespace PureSeeder.Forms
         /// <summary>
         /// Update the context with the source from the page currently loaded in the browser
         /// </summary>
-        private void UpdateContextWithBrowserData()
+        private void UpdateContextWithBrowserData(string pageSource)
         {
-            var source = string.Empty;
-            var pageSource = string.Empty;
-
-            // Get the source for the page currently loaded in the browser
-            if (!string.IsNullOrEmpty(geckoWebBrowser1.Document.GetElementsByTagName("html")[0].InnerHtml))
-                pageSource = geckoWebBrowser1.Document.GetElementsByTagName("html")[0].InnerHtml;
-
-            source = pageSource;
-            _context.UpdateContextWithBrowserPage(source);
+            _context.UpdateContextWithBrowserPage(pageSource);
 
             AutoLogin();
         }
@@ -489,15 +489,12 @@ namespace PureSeeder.Forms
 
         private void RunJavascript(string javascript)
         {
-            using (var context = new AutoJSContext(geckoWebBrowser1.Window.JSContext))
-            {
-                context.EvaluateScript(javascript);
-            }
+            browser.EvaluateScriptAsync(javascript);
         }
 
         private void Logout()
         {
-            geckoWebBrowser1.Navigate("http://battlelog.battlefield.com/bf4/session/logout/");
+            browser.Load("http://battlelog.battlefield.com/bf4/session/logout/");
         }
 
         private Task CheckLogout(Action successfulLogout, Action failedLogout)
@@ -537,7 +534,7 @@ namespace PureSeeder.Forms
             await Seed();
         }
 
-        private void geckoWebBrowser1_DomContentChanged(object sender, DomEventArgs e)
+        private void geckoWebBrowser1_DomContentChanged(object sender, LoadingStateChangedEventArgs e)
         {
             BrowserChanged(sender, e);
         }

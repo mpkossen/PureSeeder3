@@ -1,4 +1,6 @@
-﻿namespace PureSeeder.Forms
+﻿using CefSharp.WinForms;
+
+namespace PureSeeder.Forms
 {
     partial class MainForm
     {
@@ -32,7 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.webControlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.browserPanel = new System.Windows.Forms.Panel();
-            this.geckoWebBrowser1 = new Gecko.GeckoWebBrowser();
+            this.browser = new ChromiumWebBrowser("https://battlelog.battlefield.com/bf4/");
             this.username = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -129,25 +131,23 @@
             this.browserPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.browserPanel.Controls.Add(this.geckoWebBrowser1);
+            this.browserPanel.Controls.Add(this.browser);
             this.browserPanel.Location = new System.Drawing.Point(3, 3);
             this.browserPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 80);
             this.browserPanel.Name = "browserPanel";
             this.browserPanel.Size = new System.Drawing.Size(1090, 480);
             this.browserPanel.TabIndex = 3;
-            // 
-            // geckoWebBrowser1
-            // 
-            this.geckoWebBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+
+            this.browser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.geckoWebBrowser1.Location = new System.Drawing.Point(3, 3);
-            this.geckoWebBrowser1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
-            this.geckoWebBrowser1.Name = "geckoWebBrowser1";
-            this.geckoWebBrowser1.Size = new System.Drawing.Size(1090, 480);
-            this.geckoWebBrowser1.TabIndex = 0;
-            this.geckoWebBrowser1.UseHttpActivityObserver = false;
-            this.geckoWebBrowser1.DomContentChanged += new System.EventHandler<Gecko.DomEventArgs>(this.geckoWebBrowser1_DomContentChanged);
+            this.browser.Location = new System.Drawing.Point(3, 3);
+            this.browser.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
+            this.browser.Name = "Chromium";
+            this.browser.Size = new System.Drawing.Size(1090, 480);
+            this.browser.TabIndex = 0;
+            this.browser.LoadingStateChanged += new System.EventHandler<CefSharp.LoadingStateChangedEventArgs>(this.geckoWebBrowser1_DomContentChanged);
+
             // 
             // username
             // 
@@ -638,8 +638,8 @@
             this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl2.Controls.Add(this.StatusTab);
             this.tabControl2.Controls.Add(this.BrowserTab);
+            this.tabControl2.Controls.Add(this.StatusTab);
             this.tabControl2.Location = new System.Drawing.Point(12, 174);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -822,6 +822,7 @@
         private System.Windows.Forms.BindingSource webControlBindingSource;
         private System.Windows.Forms.Panel browserPanel;
         private Gecko.GeckoWebBrowser geckoWebBrowser1;
+        private ChromiumWebBrowser browser;
         private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
