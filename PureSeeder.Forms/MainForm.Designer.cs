@@ -1,4 +1,7 @@
-﻿using CefSharp.WinForms;
+﻿using CefSharp;
+using CefSharp.WinForms;
+using System;
+using System.IO;
 
 namespace PureSeeder.Forms
 {
@@ -30,11 +33,20 @@ namespace PureSeeder.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            // Initialize browser so we can use persistent cookies
+            var cefSettings = new CefSettings();
+
+            // By default CEF uses an in memory cache, to save cached data e.g. to persist cookies you need to specify a cache path
+            // NOTE: The executing user must have sufficient privileges to write to this folder.
+            cefSettings.CachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CefSharp\\Cache");
+
+            Cef.Initialize(cefSettings);
+            this.browser = new ChromiumWebBrowser("https://battlelog.battlefield.com/bf4/");
+
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.webControlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.browserPanel = new System.Windows.Forms.Panel();
-            this.browser = new ChromiumWebBrowser("https://battlelog.battlefield.com/bf4/");
             this.username = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -821,7 +833,6 @@ namespace PureSeeder.Forms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource webControlBindingSource;
         private System.Windows.Forms.Panel browserPanel;
-        private Gecko.GeckoWebBrowser geckoWebBrowser1;
         private ChromiumWebBrowser browser;
         private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.Label label3;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.ComponentModel;
 
 namespace PureSeeder.Core.Settings
 {
@@ -16,7 +10,7 @@ namespace PureSeeder.Core.Settings
         protected override void OnAddingNew(AddingNewEventArgs e)
         {
             if (e.NewObject != null)
-                ((Server) e.NewObject).PropertyChanged += OnServerChanged;
+                ((Server)e.NewObject).PropertyChanged += OnServerChanged;
 
             base.OnAddingNew(e);
         }

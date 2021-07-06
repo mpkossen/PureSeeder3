@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PureSeeder.Core.Annotations;
+﻿using PureSeeder.Core.Annotations;
 using PureSeeder.Core.Context;
-using PureSeeder.Core.ServerManagement;
 using PureSeeder.Core.Settings;
-using PureSeeder.Forms.Extensions;
 using PureSeeder.Forms.Properties;
+using System;
+using System.Windows.Forms;
 
 namespace PureSeeder.Forms
 {
@@ -33,10 +24,10 @@ namespace PureSeeder.Forms
 
         private void ServerEditor_Load(object sender, EventArgs e)
         {
-            var serversBindingSource = new BindingSource {DataSource = _context.Settings.Servers};
+            var serversBindingSource = new BindingSource { DataSource = _context.Settings.Servers };
             serverList.DataSource = serversBindingSource;
             serverList.DisplayMember = "Name";
-            
+
 
             Icon = Resources.PB;
 
@@ -65,7 +56,7 @@ namespace PureSeeder.Forms
 
         private void addServer_Click(object sender, EventArgs e)
         {
-            var newServer = new Server() {Name = "New Server"};
+            var newServer = new Server() { Name = "New Server" };
             _context.Settings.Servers.Add(newServer);
         }
 

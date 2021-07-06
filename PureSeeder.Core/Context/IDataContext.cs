@@ -1,7 +1,5 @@
-﻿using System;
+﻿using PureSeeder.Core.Configuration;
 using System.Threading.Tasks;
-using PureSeeder.Core.Configuration;
-using PureSeeder.Core.Settings;
 
 namespace PureSeeder.Core.Context
 {
@@ -15,7 +13,7 @@ namespace PureSeeder.Core.Context
         /// Any user-changeable settings
         /// </summary>
         BindableSettings Settings { get; }
-        
+
         /// <summary>
         /// Exports settings to a json file
         /// </summary>
@@ -33,13 +31,13 @@ namespace PureSeeder.Core.Context
         /// Update current status with the given page data
         /// </summary>
         /// <param name="pageData">Raw page data</param>
-        void UpdateContextWithBrowserPage(string pageData); 
+        void UpdateContextWithBrowserPage(string pageData);
 
         /// <summary>
         /// Update the statuses of all the servers in the list
         /// </summary>
         Task UpdateServerStatuses();
-        
+
         /// <summary>
         /// Event fired when UpdateContextWithBrowserPage is complete
         /// </summary>
@@ -66,8 +64,8 @@ namespace PureSeeder.Core.Context
         UserStatus GetUserStatus();
 
         // Deprecated
-//        ResultReason<ShouldNotSeedReason> ShouldSeed();
-//        ResultReason<KickReason> ShouldKick();
+        //        ResultReason<ShouldNotSeedReason> ShouldSeed();
+        //        ResultReason<KickReason> ShouldKick();
 
         //void StopGame(); Deprecated
 

@@ -1,31 +1,80 @@
 {
   "Servers": [
     {
-      "Name": "PURE Battlefield #1",
+      "Name": "[GMP] Testing ground 24/7",
       "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/dd772e48-f52e-496e-8015-fb94b0bf9ccc/",
       "MinPlayers": 4,
-      "MaxPlayers": 40,
+      "MaxPlayers": 16,
       "SeedingEnabled": true
     },
     {
-      "Name": "PURE Battlefield #3",
-      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/dd772e48-f52e-496e-8015-fb94b0bf9ccc/",
-      "MinPlayers": 4,
-      "MaxPlayers": 40,
+      "Name": "SUPER@ SiC S1",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/b59c9ef8-5a53-4f51-a859-742e9ba38684/",
+      "MinPlayers": 44,
+      "MaxPlayers": 48,
       "SeedingEnabled": true
     },
     {
-      "Name": "PURE Battlefield #4",
-      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/dd772e48-f52e-496e-8015-fb94b0bf9ccc/",
-      "MinPlayers": 4,
-      "MaxPlayers": 32,
+      "Name": "SUPER@ SiC S2",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/4637398f-f661-4625-a479-626556d457ff/",
+      "MinPlayers": 60,
+      "MaxPlayers": 64,
       "SeedingEnabled": true
     },
     {
-      "Name": "PURE Battlefield #2",
-      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/dd772e48-f52e-496e-8015-fb94b0bf9ccc/",
-      "MinPlayers": 4,
-      "MaxPlayers": 40,
+      "Name": "SUPER@ SiC S3",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/18b3fdf2-11c5-4156-8175-8553e2f50576/",
+      "MinPlayers": 60,
+      "MaxPlayers": 64,
+      "SeedingEnabled": true
+    },
+    {
+      "Name": "SUPER@ SiC S4",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/44fdefff-9ee1-403a-ab03-f814db22c099/",
+      "MinPlayers": 60,
+      "MaxPlayers": 64,
+      "SeedingEnabled": true
+    },
+    {
+      "Name": "SUPER@ SiC S5",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/c4fad2a1-5336-4f1c-9b14-730ff588ff9d/",
+      "MinPlayers": 60,
+      "MaxPlayers": 64,
+      "SeedingEnabled": true
+    },
+    {
+      "Name": "SUPER@ SiC S6",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/c9e53641-0332-4542-b6eb-010311bccdd3//",
+      "MinPlayers": 60,
+      "MaxPlayers": 64,
+      "SeedingEnabled": true
+    },
+    {
+      "Name": "SUPER@ SiC S7",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/83f0c82f-4eea-4159-8095-5007dee3a004/",
+      "MinPlayers": 60,
+      "MaxPlayers": 64,
+      "SeedingEnabled": true
+    },
+    {
+      "Name": "SUPER@ SiC S8",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/c65c24d3-c345-42bd-88ad-2005d72b571a/",
+      "MinPlayers": 60,
+      "MaxPlayers": 64,
+      "SeedingEnabled": true
+    },
+    {
+      "Name": "SUPER@ SiC S9",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/74cd6f06-a696-4157-979c-fb594f00362d/",
+      "MinPlayers": 60,
+      "MaxPlayers": 64,
+      "SeedingEnabled": true
+    },
+    {
+      "Name": "SUPER@ SiC S10",
+      "Address": "https://battlelog.battlefield.com/bf4/servers/show/pc/5ddb42b1-8a96-431c-aec9-c87759b668c2/",
+      "MinPlayers": 44,
+      "MaxPlayers": 48,
       "SeedingEnabled": true
     }
   ],

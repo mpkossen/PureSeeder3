@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using PureSeeder.Core.Context;
-using PureSeeder.Core.Initialization;
+﻿using PureSeeder.Core.Context;
 using PureSeeder.Core.ProcessControl;
 using PureSeeder.Core.ServerManagement;
 using PureSeeder.Core.Settings;
+using System.Collections.Generic;
 
 namespace PureSeeder.Forms.Initalization
 {

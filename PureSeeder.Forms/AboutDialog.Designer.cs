@@ -63,7 +63,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(220, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Created for PURE Battlefield by Brad Rhodes";
+            this.label3.Text = "Created for PURE Battlefield by Brad Rhodes, updated by mpkossen for SiC";
             // 
             // versionLabel
             // 

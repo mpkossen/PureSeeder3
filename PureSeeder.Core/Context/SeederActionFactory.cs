@@ -7,26 +7,27 @@ namespace PureSeeder.Core.Context
     {
         public Task<SeederAction> GetAction(IDataContext context)
         {
-            return Task<SeederAction>.Factory.StartNew(() => { 
-                if(!context.Session.SeedingEnabled)
+            return Task<SeederAction>.Factory.StartNew(() =>
+            {
+                if (!context.Session.SeedingEnabled)
                     return new SeederAction(SeederActionType.Noop, "Seeding is disabled.");
 
                 // Iterate over servers where SeedingEnabled is true
                 foreach (var serverStatus in context.Session.ServerStatuses.Where(status => status.SeedingEnabled))
                 {
-                    if(!context.IsSeeding() && serverStatus.CurPlayers < serverStatus.MinPlayers)
+                    if (!context.IsSeeding() && serverStatus.CurPlayers < serverStatus.MinPlayers)
                         return new SeederAction(SeederActionType.Seed, "Start seeding on highest priority server.", serverStatus);
 
                     if (!context.IsSeeding() && serverStatus.CurPlayers >= serverStatus.MinPlayers)
                         continue;
 
-                    if(context.IsSeeding() && !IsCurrentServer(serverStatus, context) && serverStatus.CurPlayers < serverStatus.MinPlayers)
+                    if (context.IsSeeding() && !IsCurrentServer(serverStatus, context) && serverStatus.CurPlayers < serverStatus.MinPlayers)
                         return new SeederAction(SeederActionType.Stop, "Not seeding the highest priority server that needs seeding.");
 
-                    if(context.IsSeeding() && IsCurrentServer(serverStatus, context) && serverStatus.CurPlayers >= serverStatus.MaxPlayers)
+                    if (context.IsSeeding() && IsCurrentServer(serverStatus, context) && serverStatus.CurPlayers >= serverStatus.MaxPlayers)
                         return new SeederAction(SeederActionType.Stop, "Seeding no longer needed on this server.");
 
-                    if(context.IsSeeding() && IsCurrentServer(serverStatus, context) && serverStatus.CurPlayers < serverStatus.MaxPlayers)
+                    if (context.IsSeeding() && IsCurrentServer(serverStatus, context) && serverStatus.CurPlayers < serverStatus.MaxPlayers)
                         return new SeederAction(SeederActionType.Noop, "Continue seeding this server.");
                 }
 

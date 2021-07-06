@@ -1,23 +1,23 @@
-﻿using System;
+﻿using PureSeeder.Core.Annotations;
+using PureSeeder.Core.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using PureSeeder.Core.Annotations;
-using PureSeeder.Core.Settings;
 
 namespace PureSeeder.Core.Context
 {
     public class ServerStatusCollection : BindingList<ServerStatus>
     {
         private Servers _serverCollection;
-        private readonly Dictionary<string, Tuple<int?, int?>> _innerStatusCollection; 
+        private readonly Dictionary<string, Tuple<int?, int?>> _innerStatusCollection;
 
         public ServerStatusCollection()
         {
             _serverCollection = new Servers();
             _innerStatusCollection = new Dictionary<string, Tuple<int?, int?>>();
         }
-        
+
         public void SetInnerServerCollection([NotNull] Servers serverCollection)
         {
             if (serverCollection == null) throw new ArgumentNullException("serverCollection");
@@ -47,7 +47,7 @@ namespace PureSeeder.Core.Context
         {
             this.Clear();
 
-            Init((Servers) sender);
+            Init((Servers)sender);
         }
 
         public new event ListChangedEventHandler ListChanged
@@ -67,7 +67,7 @@ namespace PureSeeder.Core.Context
             add { _serverCollection.ServerChanged += value; }
             remove { _serverCollection.ServerChanged -= value; }
         }
-      
+
         public void UpdateStatus(string address, int? curPlayers, int? serverMax)
         {
             _innerStatusCollection[address] = new Tuple<int?, int?>(curPlayers, serverMax);

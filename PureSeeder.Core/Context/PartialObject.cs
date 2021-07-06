@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using PureSeeder.Core.Annotations;
 using PureSeeder.Core.PartialObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace PureSeeder.Core.Context
 {
@@ -86,7 +81,7 @@ namespace PureSeeder.Core.Context
             {
                 if (value is JArray)
                 {
-                    valueItem = ((JArray) value).ToObject<TValue>();
+                    valueItem = ((JArray)value).ToObject<TValue>();
                     return true;
                 }
                 valueItem = value.Value<TValue>();

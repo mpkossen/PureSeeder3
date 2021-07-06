@@ -1,12 +1,11 @@
+using Newtonsoft.Json;
+using PureSeeder.Core.Annotations;
+using PureSeeder.Core.Configuration;
+using PureSeeder.Core.Context;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using PureSeeder.Core.Annotations;
-using PureSeeder.Core.Configuration;
-using PureSeeder.Core.Context;
 
 namespace PureSeeder.Core.ServerManagement
 {
@@ -27,29 +26,33 @@ namespace PureSeeder.Core.ServerManagement
 
             using (var httpClient = new HttpClient())
             {
-                var address = String.Format(Constants.BattlelogUrlTemplates.ServerStatus, serverStatus.Id);
+                //var address = String.Format(Constants.BattlelogUrlTemplates.ServerStatus, serverStatus.Id);
+                var address = String.Format("https://keeper.battlelog.com/snapshot/{0}/", serverStatus.Id);
                 var response = await httpClient.GetStringAsync(address).ConfigureAwait(true);
 
                 if (String.IsNullOrEmpty(response))
                     return;
 
-                
-                ServerInfo serverInfo;
+                int count = 0;
 
-                try
+                var newServerInfo = System.Json.JsonArray.Parse(response);
+
+                if (newServerInfo["snapshot"]["teamInfo"] != null)
                 {
-                    serverInfo = JsonConvert.DeserializeObject<ServerInfo>(response);
-                }
-                catch
-                {
-                    return;
+                    count += newServerInfo["snapshot"]["teamInfo"]["1"]["players"].Count;
+                    count += newServerInfo["snapshot"]["teamInfo"]["2"]["players"].Count;
+                    if (newServerInfo["snapshot"]["teamInfo"].ContainsKey("3"))
+                    {
+                        count += newServerInfo["snapshot"]["teamInfo"]["3"]["players"].Count;
+                    }
+                    if (newServerInfo["snapshot"]["teamInfo"].ContainsKey("4"))
+                    {
+                        count += newServerInfo["snapshot"]["teamInfo"]["4"]["players"].Count;
+                    }
                 }
 
-                if (serverInfo != null && serverInfo.Slots != null && serverInfo.Slots.Players != null)
-                {
-                    serverStatus.CurPlayers = serverInfo.Slots.Players.Current;
-                    serverStatus.ServerMax = serverInfo.Slots.Players.Max;
-                }
+                serverStatus.CurPlayers = count;
+                serverStatus.ServerMax = newServerInfo["snapshot"]["maxPlayers"];
             }
         }
 
@@ -65,7 +68,24 @@ namespace PureSeeder.Core.ServerManagement
 
     public class ServerInfo
     {
+        public Snapshot Snapshot { get; set; }
         public ServerSlots Slots { get; set; }
+    }
+
+    public class Snapshot
+    {
+        public TeamInfo TeamInfo { get; set; }
+    }
+
+    public class TeamInfo
+    {
+        [JsonProperty(PropertyName = "2")]
+        public TeamFaction TeamFaction { get; set; }
+    }
+
+    public class TeamFaction
+    {
+        public int Faction { get; set; }
     }
 
     public class ServerSlots

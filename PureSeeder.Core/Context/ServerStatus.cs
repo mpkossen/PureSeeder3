@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Data;
-using System.Text;
-using System.Threading.Tasks;
-using PureSeeder.Core.Annotations;
+﻿using PureSeeder.Core.Annotations;
 using PureSeeder.Core.Settings;
+using System;
 
 namespace PureSeeder.Core.Context
 {
@@ -27,10 +23,10 @@ namespace PureSeeder.Core.Context
             get { return _curPlayers; }
             set { SetField(ref _curPlayers, value); }
         }
-        
+
         public int? ServerMax
         {
-            get { return _serverMax; } 
+            get { return _serverMax; }
             set { SetField(ref _serverMax, value); }
         }
 

@@ -7,7 +7,7 @@ namespace PureSeeder.Core.Logging
     {
         private static Logger _instance;
 
-        private BindingList<LogMessage> _log; 
+        private BindingList<LogMessage> _log;
 
         private Logger()
         {
@@ -16,7 +16,7 @@ namespace PureSeeder.Core.Logging
 
         private static Logger GetInstance()
         {
-            if(_instance == null)
+            if (_instance == null)
                 _instance = new Logger();
 
             return _instance;
@@ -25,7 +25,7 @@ namespace PureSeeder.Core.Logging
         public static BindingList<LogMessage> LogList
         {
             get { return GetInstance()._log; }
-        } 
+        }
 
         public static void Log(string logMessage)
         {

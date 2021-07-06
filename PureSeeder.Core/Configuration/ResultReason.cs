@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PureSeeder.Core.Configuration
+﻿namespace PureSeeder.Core.Configuration
 {
     public class ResultReason<T>
     {

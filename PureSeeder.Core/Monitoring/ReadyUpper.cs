@@ -1,9 +1,9 @@
-﻿using System;
+﻿using PureSeeder.Core.Configuration;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PureSeeder.Core.Configuration;
 
 namespace PureSeeder.Core.Monitoring
 {
@@ -26,7 +26,7 @@ namespace PureSeeder.Core.Monitoring
                         }
                     }
 
-                    Thread.Sleep(1*numSeconds*1000);
+                    Thread.Sleep(1 * numSeconds * 1000);
                 }
             });
         }

@@ -12,8 +12,8 @@ namespace PureSeeder.Core.Monitoring
             var hWnd = FindWindow(wndName);  // Get the handle for the game
             int LParam = MakeLParam(x, y);  // create the parameter for 
 
-            ExternalDefs.SendMessage(hWnd, (int) WMessages.WM_LBUTTONDOWN, 0, LParam);  // Click
-            ExternalDefs.SendMessage(hWnd, (int) WMessages.WM_LBUTTONUP, 0, LParam);
+            ExternalDefs.SendMessage(hWnd, (int)WMessages.WM_LBUTTONDOWN, 0, LParam);  // Click
+            ExternalDefs.SendMessage(hWnd, (int)WMessages.WM_LBUTTONUP, 0, LParam);
 
             ExternalDefs.SetForegroundWindow(curhWnd);  // Set the foreground window back
         }
@@ -40,7 +40,7 @@ namespace PureSeeder.Core.Monitoring
             keyDown.ki.time = 0;
             keyDown.ki.dwExtraInfo = IntPtr.Zero;
 
-            return new INPUT[1]{keyDown};
+            return new INPUT[1] { keyDown };
         }
 
         public static void MinimizeWindow(string wndName)
@@ -89,13 +89,13 @@ namespace PureSeeder.Core.Monitoring
            [In] ref STARTUPINFO lpStartupInfo,
            out PROCESS_INFORMATION lpProcessInformation);
 
-//        [DllImport("user32.dll", SetLastError = true)]
-//        public static extern IntPtr GetActiveWindow();
+        //        [DllImport("user32.dll", SetLastError = true)]
+        //        public static extern IntPtr GetActiveWindow();
 
         /// <summary>The GetForegroundWindow function returns a handle to the foreground window.</summary>
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
-        
+
         [DllImport("user32.dll")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 
@@ -108,15 +108,15 @@ namespace PureSeeder.Core.Monitoring
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
         public static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
-//        [DllImport("user32.dll")]
-//        public static extern IntPtr FindWindow(string lpClassName,string lpWindowName);
-//        [DllImport("user32.dll")]
-//        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        //        [DllImport("user32.dll")]
+        //        public static extern IntPtr FindWindow(string lpClassName,string lpWindowName);
+        //        [DllImport("user32.dll")]
+        //        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll")]
         public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-        [DllImport("user32.dll", CharSet=CharSet.Auto, CallingConvention=CallingConvention.StdCall)]
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
 
         [return: MarshalAs(UnmanagedType.Bool)]

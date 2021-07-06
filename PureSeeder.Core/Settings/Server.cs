@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using PureSeeder.Core.Context;
+﻿using PureSeeder.Core.Context;
+using System.ComponentModel;
 
 namespace PureSeeder.Core.Settings
 {
@@ -33,7 +33,7 @@ namespace PureSeeder.Core.Settings
             get { return this._id; }
             set { SetField(ref _id, value); }
         }
-        
+
         [Description("Minimum player threshold. Seeding will happen if there are fewer than this many players.")]
         public int MinPlayers
         {
@@ -41,7 +41,7 @@ namespace PureSeeder.Core.Settings
             set { SetField(ref _minPlayers, value); }
         }
 
-        
+
         [Description("Maximum player threshold. Current seeding will stop if there are this many players or more.")]
         public int MaxPlayers
         {

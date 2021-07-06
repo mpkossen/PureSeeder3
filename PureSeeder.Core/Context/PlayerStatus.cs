@@ -11,7 +11,7 @@
             _currentServer = currentServer;
         }
 
-        public string Username { get { return _username; }}
+        public string Username { get { return _username; } }
         public string CurrentServer { get { return _currentServer; } }
     }
 }

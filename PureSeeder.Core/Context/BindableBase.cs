@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using PureSeeder.Core.Annotations;
 
 namespace PureSeeder.Core.Context
 {
@@ -31,8 +30,8 @@ namespace PureSeeder.Core.Context
         {
             if (object.Equals(storage, value)) return false;
 
-            var expr = (MemberExpression) outExpr.Body;
-            var prop = (PropertyInfo) expr.Member;
+            var expr = (MemberExpression)outExpr.Body;
+            var prop = (PropertyInfo)expr.Member;
             prop.SetValue(storage, value);
             this.OnPropertyChanged(prop.Name);
             return true;

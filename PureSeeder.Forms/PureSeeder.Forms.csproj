@@ -14,12 +14,15 @@
     <AssemblyName>PureSeeder.Forms</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <PublishUrl>C:\Dev\Junk\PureSeeder\2.1.0.0\</PublishUrl>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\mpkossen\Desktop\v2.2.0.0\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
+    <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -27,22 +30,18 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://pure-battlefield.github.io/PureSeeder3/</InstallUrl>
-    <UpdateUrl>http://pure-battlefield.github.io/PureSeeder3/</UpdateUrl>
+    <UpdateUrl>https://mpkossen.github.io/PureSeeder3/</UpdateUrl>
     <TargetCulture>en</TargetCulture>
     <ProductName>PURE Seeder 3</ProductName>
     <PublisherName>PURE Battlefield</PublisherName>
     <MinimumRequiredVersion>2.0.1.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>2.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -138,8 +137,10 @@
     <Compile Include="ServerEditor.Designer.cs">
       <DependentUpon>ServerEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -164,7 +165,6 @@
     <EmbeddedResource Include="ServerEditor.resx">
       <DependentUpon>ServerEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Firefox\omni.ja" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Awesomium.Core.IWebView.datasource" />
     <None Include="Properties\DataSources\Awesomium.Windows.Forms.WebControl.datasource" />
@@ -177,59 +177,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="Firefox\AccessibleHandler.dll" />
-    <Content Include="Firefox\AccessibleMarshal.dll" />
-    <Content Include="Firefox\breakpadinjector.dll" />
-    <Content Include="Firefox\d3dcompiler_47.dll" />
-    <Content Include="Firefox\freebl3.dll" />
-    <Content Include="Firefox\IA2Marshal.dll" />
-    <Content Include="Firefox\icudt58.dll" />
-    <Content Include="Firefox\icuin58.dll" />
-    <Content Include="Firefox\icuuc58.dll" />
-    <Content Include="Firefox\lgpllibs.dll" />
-    <Content Include="Firefox\libEGL.dll" />
-    <Content Include="Firefox\libGLESv2.dll" />
-    <Content Include="Firefox\mozavcodec.dll" />
-    <Content Include="Firefox\mozavutil.dll" />
-    <Content Include="Firefox\mozglue.dll" />
-    <Content Include="Firefox\nss3.dll" />
-    <Content Include="Firefox\nssckbi.dll" />
-    <Content Include="Firefox\nssdbm3.dll" />
-    <Content Include="Firefox\plugin-container.exe" />
-    <Content Include="Firefox\plugin-hang-ui.exe" />
-    <Content Include="Firefox\qipcap.dll" />
-    <Content Include="Firefox\sandboxbroker.dll" />
-    <Content Include="Firefox\softokn3.dll" />
-    <Content Include="Firefox\xul.dll" />
     <Content Include="Resources\arrow_Down_16xMD.png" />
     <Content Include="Resources\arrow_Up_16xMD.png" />
-    <Content Include="xulrunner\dictionaries\en-US.aff">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\dictionaries\en-US.dic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\freebl3.chk">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\nssdbm3.chk">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\omni.ja">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\precomplete">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\README.xulrunner">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\softokn3.chk">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -264,60 +213,6 @@
     <None Include="Resources\PBOn.ico" />
     <None Include="Resources\PBOff.ico" />
     <Content Include="PBOBlueTrans.ico" />
-    <Content Include="xulrunner\breakpadinjector.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\D3DCompiler_43.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\freebl3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\gkmedias.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\IA2Marshal.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\js-gdb.py">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\libEGL.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\libGLESv2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\mozalloc.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\mozglue.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\mozjs.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\msvcp100.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\msvcr100.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\nss3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\nssckbi.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\nssdbm3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\softokn3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\xul.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <FileAssociation Include=".psjson">

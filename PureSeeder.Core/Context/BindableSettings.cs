@@ -1,7 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PureSeeder.Core.Settings;
+using System;
+using System.ComponentModel;
 
 namespace PureSeeder.Core.Context
 {
@@ -75,12 +75,12 @@ namespace PureSeeder.Core.Context
         }
 
         // Deprecated
-//        [JsonIgnore]
-//        public int CurrentServer
-//        {
-//            get { return _settings.CurrentServer; }
-//            set { SetProperty(_settings, value, x => x.CurrentServer); }
-//        }
+        //        [JsonIgnore]
+        //        public int CurrentServer
+        //        {
+        //            get { return _settings.CurrentServer; }
+        //            set { SetProperty(_settings, value, x => x.CurrentServer); }
+        //        }
 
         public int RefreshInterval
         {

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PureSeeder.Forms.Properties;
+using System;
 using System.Windows.Forms;
-using PureSeeder.Forms.Properties;
 
 namespace PureSeeder.Forms
 {

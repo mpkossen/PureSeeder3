@@ -1,5 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using PureSeeder.Core.Configuration;
+﻿using PureSeeder.Core.Configuration;
+using System.Text.RegularExpressions;
 
 namespace PureSeeder.Core.Context
 {

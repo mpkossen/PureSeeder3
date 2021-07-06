@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
+﻿using PureSeeder.Core.Configuration;
+using PureSeeder.Core.Monitoring;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PureSeeder.Core.Configuration;
-using PureSeeder.Core.Monitoring;
 
 namespace PureSeeder.Core.ProcessControl
 {
@@ -39,17 +39,17 @@ namespace PureSeeder.Core.ProcessControl
             await new GameMinimizer().MinimizeGameOnce(cts.Token, () => Constants.Games.Bf4);
         }
 
-//        public Task<bool> BfIsRunning()
-//        {
-//            throw new System.NotImplementedException();
-//        }
+        //        public Task<bool> BfIsRunning()
+        //        {
+        //            throw new System.NotImplementedException();
+        //        }
 
         public ProcessMonitor GetProcessMonitor()
         {
             return new ProcessMonitor(
                 new ICrashDetector[]
                 {
-                    new CrashDetector(new CrashHandler()), new DetectCrashByFaultWindow(), 
+                    new CrashDetector(new CrashHandler()), new DetectCrashByFaultWindow(),
                 });
         }
 

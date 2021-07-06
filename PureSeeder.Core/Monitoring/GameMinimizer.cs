@@ -1,9 +1,9 @@
-﻿using System;
+﻿using PureSeeder.Core.Configuration;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PureSeeder.Core.Configuration;
 
 namespace PureSeeder.Core.Monitoring
 {
@@ -20,8 +20,8 @@ namespace PureSeeder.Core.Monitoring
 
                         if (process != null)
                         {
-                                var gameWnd = PInvoke.FindWindow(currentGame.WindowTitle);
-                                var wndState = PInvoke.GetWindowState(gameWnd);
+                            var gameWnd = PInvoke.FindWindow(currentGame.WindowTitle);
+                            var wndState = PInvoke.GetWindowState(gameWnd);
 
                             if (gameWnd.ToInt32() != 0 && (wndState == 1 || wndState == 3))
                             {

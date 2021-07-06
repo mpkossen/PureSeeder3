@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Deployment.Application;
-using System.Drawing;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.Remoting.Contexts;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Gecko;
+﻿using CefSharp;
 using PureSeeder.Core.Annotations;
 using PureSeeder.Core.Configuration;
 using PureSeeder.Core.Context;
@@ -17,11 +6,16 @@ using PureSeeder.Core.Logging;
 using PureSeeder.Core.Monitoring;
 using PureSeeder.Core.ProcessControl;
 using PureSeeder.Core.ServerManagement;
-using PureSeeder.Core.Settings;
 using PureSeeder.Forms.Extensions;
 using PureSeeder.Forms.Properties;
+using System;
+using System.ComponentModel;
+using System.Deployment.Application;
+using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
-using CefSharp;
 
 namespace PureSeeder.Forms
 {
@@ -37,8 +31,8 @@ namespace PureSeeder.Forms
         private readonly Timer _statusRefreshTimer;
         private readonly Timer _randomSeedTimer;
         private Random _rand;
-        private int _randMin = 60*1000;
-        private int _randMax = 600*1000;
+        private int _randMin = 60 * 1000;
+        private int _randMax = 600 * 1000;
 
         // CancellationTokens
         private CancellationToken _avoidIdleKickCt;
@@ -62,7 +56,7 @@ namespace PureSeeder.Forms
 
             _context.Session.PropertyChanged += ContextPropertyChanged;
             _context.Settings.PropertyChanged += ContextPropertyChanged;
-            
+
             _browserRefreshTimer = new Timer();
             _statusRefreshTimer = new Timer();
             _rand = new Random();
@@ -82,7 +76,7 @@ namespace PureSeeder.Forms
 
             CreateBindings();
             UiSetup();
-            
+
             await RefreshServerStatusesNoSeed();
 
             FirstRunCheck();
@@ -154,7 +148,7 @@ namespace PureSeeder.Forms
             if (!int.TryParse(refreshInterval.Text, out refreshTimerInterval))
                 refreshTimerInterval = _context.Settings.RefreshInterval;
 
-            refreshTimerInterval = refreshTimerInterval*1000;
+            refreshTimerInterval = refreshTimerInterval * 1000;
 
             _browserRefreshTimer.Interval = refreshTimerInterval;
 
@@ -169,7 +163,7 @@ namespace PureSeeder.Forms
             if (!int.TryParse(statusRefreshInterval.Text, out statusRefreshTimerInterval))
                 statusRefreshTimerInterval = _context.Settings.StatusRefreshInterval;
 
-            statusRefreshTimerInterval = statusRefreshTimerInterval*1000;
+            statusRefreshTimerInterval = statusRefreshTimerInterval * 1000;
 
             _statusRefreshTimer.Interval = statusRefreshTimerInterval;
 
@@ -181,7 +175,7 @@ namespace PureSeeder.Forms
         private void SetRandomSeedTimer()
         {
             _randomSeedTimer.Tick += RandomSeedTimerHandler;
-            
+
             var timerInterval = _rand.Next(_randMin, _randMax); // Random between 1 and 10 mins
             //SetStatus(String.Format("Time until next seed attempt: {0} seconds", (timerInterval / 1000).ToString()), 5);
             _randomSeedTimer.Interval = timerInterval;
@@ -214,7 +208,7 @@ namespace PureSeeder.Forms
             saveSettings.DataBindings.Add("Enabled", _context.Settings, x => x.DirtySettings, true,
                 DataSourceUpdateMode.OnPropertyChanged);
 
-            var statusBindingSource = new BindingSource() {DataSource = _context.Session.ServerStatuses};
+            var statusBindingSource = new BindingSource() { DataSource = _context.Session.ServerStatuses };
             dataGridView1.DataSource = statusBindingSource;
         }
 
@@ -265,7 +259,7 @@ namespace PureSeeder.Forms
             //SetStatus(String.Format("Time until next seed attempt: {0} seconds", (timerInterval / 1000).ToString()), 5);
             _randomSeedTimer.Interval = timerInterval;
 
-            
+
             await Seed();
         }
 
@@ -360,7 +354,7 @@ namespace PureSeeder.Forms
 
                 DialogResult result = MessageBoxEx.Show("Seeding in 5 seconds.", "Auto-Seeding", MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, 5000);
-                
+
                 if (result == DialogResult.Cancel)
                     return;
 
@@ -375,10 +369,10 @@ namespace PureSeeder.Forms
         /// <summary>
         /// This method is the event handler for any time the browser is refreshed
         /// </summary>
-        private void BrowserChanged(object sender, EventArgs e)
+        private void BrowserChanged(object sender, LoadingStateChangedEventArgs e)
         {
             string html;
-            
+
             browser.GetSourceAsync().ContinueWith(taskHtml =>
             {
                 html = taskHtml.Result;
@@ -388,6 +382,12 @@ namespace PureSeeder.Forms
             if (curUrl.InvokeRequired)
             {
                 curUrl.Invoke(new MethodInvoker(delegate { curUrl.Text = browser.Address; }));
+            }
+
+            // TODO This should not be fired every time the browser changes
+            if (!e.IsLoading)
+            {
+                AutoLogin();
             }
         }
 
@@ -439,8 +439,6 @@ namespace PureSeeder.Forms
         private void UpdateContextWithBrowserData(string pageSource)
         {
             _context.UpdateContextWithBrowserPage(pageSource);
-
-            AutoLogin();
         }
 
         private void UpdateInterface()
@@ -691,7 +689,7 @@ namespace PureSeeder.Forms
 
         private Task Sleep(int seconds)
         {
-            return Task.Factory.StartNew(() => Thread.Sleep(seconds*1000));
+            return Task.Factory.StartNew(() => Thread.Sleep(seconds * 1000));
         }
     }
 }

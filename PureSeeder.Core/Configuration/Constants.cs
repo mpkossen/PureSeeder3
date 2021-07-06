@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace PureSeeder.Core.Configuration
 {
@@ -48,22 +43,22 @@ namespace PureSeeder.Core.Configuration
         public static class Games
         {
             public static GameInfo Bf4 = new GameInfo()
-                {
-                    GameName = "Battlefield 4",
-                    ProcessName = "bf4",
-                    WindowTitle = "Battlefield 4",
-                    FaultWindowTitle = "Battlefield 4™",
-                    UrlMatch = new Regex(@"/bf4/")
-                };
+            {
+                GameName = "Battlefield 4",
+                ProcessName = "bf4",
+                WindowTitle = "Battlefield 4",
+                FaultWindowTitle = "Battlefield 4™",
+                UrlMatch = new Regex(@"/bf4/")
+            };
 
             // Note: Right now we only support BF4
-//            public static GameInfo Bf3 = new GameInfo()
-//                {
-//                    GameName = "Battlefield 3",
-//                    ProcessName = "Bf3",
-//                    WindowTitle = "Battlefield 3™",
-//                    UrlMatch = new Regex(@"/bf3/")
-//                };
+            //            public static GameInfo Bf3 = new GameInfo()
+            //                {
+            //                    GameName = "Battlefield 3",
+            //                    ProcessName = "Bf3",
+            //                    WindowTitle = "Battlefield 3™",
+            //                    UrlMatch = new Regex(@"/bf3/")
+            //                };
         }
     }
 
